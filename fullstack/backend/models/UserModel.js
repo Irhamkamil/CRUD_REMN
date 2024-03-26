@@ -1,0 +1,23 @@
+import { Sequelize } from "sequelize";
+import db from "../config/Database.js";
+
+const { DataTypes } = Sequelize;
+
+const User = db.define(
+  "users",
+  {
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    gender: DataTypes.STRING
+  },
+  {
+    freezeTableName: true
+  }
+);
+
+export default User;
+
+// untuk generate table jika tabel user belum ada
+(async () => {
+  await db.sync();
+})();
